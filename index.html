@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Weather App</title>
+  </head>
+  <body>
+    <section class="card">
+
+
+      <div class="container">
+
+        <div class="div-align">
+          <div class="div-left">
+            <img src="./icons/sun.png" class="weather-icon" data-current-icon/>
+            <h4 class="card-temperature">3<span>&deg;</span></h4>
+          </div>
+
+          <div class="div-right">
+            <h4 class="card-timezone">Timezone</h4>
+            <h4 class="card-time">Time</h4>
+            <h4 class="card-desc" data-temperature-desc>desc</h4>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="conclusion">
+      <div>
+        <h3>Simple weather app with API call</h3>
+
+        <h3 class="h3-subtitle"> Important points :</h3>
+        <h4 class="app-js">App.js</h4>
+        <ul class="ul-conclusion">
+          <li>window.addEventListener</li>
+          <li>document.querySelector</li>
+          <li>navigator.geolocation.getCurrentPosition</li>
+          <li>fetch(api)</li>
+          <li>json manipulation</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <script src="App.js" charset="utf-8"></script>
+  </body>
+</html>
