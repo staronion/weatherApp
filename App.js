@@ -1,49 +1,29 @@
-
-//https://api.open-meteo.com/v1/meteofrance?latitude=52.52&longitude=13.41&hourly=temperature_2m
-//https://api.open-meteo.com/v1/meteofrance?latitude=48.8046592&longitude=2.392064&hourly=temperature_2m&hourly=precipitation&hourly=cloudcover
-
-//https://api.open-meteo.com/v1/meteofrance?latitude=52.52&longitude=13.41&hourly=temperature_2m,relativehumidity_2m,precipitation,weathercode,cloudcover,windspeed_10m&daily=weathercode&current_weather=true&timezone=Europe%2FLondon
-
-
 let temperatureDOM = document.querySelector('.card-temperature');
-//let wind = document.querySelector('./wind');
+
 let timezoneDOM = document.querySelector('.card-timezone');
 
 let timeDOM = document.querySelector('.card-time');
-
-//let weathercodeDOM = document.querySelector('.card-wmo');
 
 let weatherIconeElement = document.querySelector('.weather-icon');
 
 let tmpdescDOM = document.querySelector('.card-desc');
 
-let setRainSnow = true;
-let setCloud = true;
-
 window.addEventListener('load', ()=>{
-
 
     let long;
     let lat;
-
 
 
     if(navigator.geolocation){
 
         navigator.geolocation.getCurrentPosition(position => {
 
-            //console.log(position);
 
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-
-            //let api = `https://api.open-meteo.com/v1/meteofrance?latitude=${lat}&longitude=${long}&hourly=temperature_2m`;
-
-            //const api = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true&hourly=temperature_2m&hourly=relativehumidity_2m&hourly=windspeed_10m`;
-
             const api = `https://api.open-meteo.com/v1/meteofrance?latitude=${lat}&longitude=${long}&hourly=temperature_2m,relativehumidity_2m,precipitation,weathercode,cloudcover,windspeed_10m&daily=weathercode&current_weather=true&timezone=Europe%2FLondon`;
-            console.log("api : "+api);
+  
 
             fetch(api)
                 .then(response =>{
@@ -54,34 +34,20 @@ window.addEventListener('load', ()=>{
                         console.log(data);
 
 
-                        console.log("timezone : "+data.timezone);
-                        console.log("type of timezone : "+ typeof data.timezone);
-
-
-
-
-
-
+           
                         timezoneDOM.textContent = data.timezone;
 
                         const {time, temperature, weathercode}  = data.current_weather;
 
-                        //console.log('weathercode : ', weathercode);
-
                         var [dateTmp, heure] = time.split('T');
-
 
 
                         renderWeatherIcon(weathercode);
 
 
 
-
-
-
                         timeDOM.textContent = dateTmp + ' ' + heure;
                         temperatureDOM.textContent = temperature+'°';
-                       // tmpdescDOM.textContent = windspeed;
 
 
             });
